@@ -39,7 +39,7 @@ const MainContainer = ({}) => {
                         {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item interval={2000}>
                     {/* <ExampleCarouselImage text="Third slide" /> */}
                     <Image src="/images/main-springboot.png" fluid />
                     <Carousel.Caption>
