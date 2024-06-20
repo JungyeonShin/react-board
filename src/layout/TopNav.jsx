@@ -10,20 +10,18 @@ function TopNav() {
   const st = useLocation();
   const test = st.state;
 
-  // console.log("TEST : ", test);
-
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Spring-React</Navbar.Brand>
+        <Navbar.Brand href="/">JY-Spring-React</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <Nav.Link href="/board">Board</Nav.Link>
+            <NavDropdown title="ETC" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">ACTION</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
               </NavDropdown.Item>

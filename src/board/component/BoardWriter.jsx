@@ -89,14 +89,32 @@ const BoardWriter = ({}) => {
 
     };
 
-    // 등록버튼 클릭 이벤트
-    const boardSave = () => {
+    // 등록버튼 클릭 이벤트, 밸리데이션 체크
+    const boardSaveCheck = () => {
         
         // 밸레데이션에 문제있으면 리턴
         if (!validator()) {
             return;
         }
 
+        Swal.fire({
+            icon: "question",
+            text: "저장하시겠습니까?",
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonText: "저장하기",
+            cancelButtonText: "취소",
+        }).then(result => {
+            if (result.isConfirmed) {
+                boardSave();
+            }
+        });
+
+        
+    };
+
+    // 게시물 저장
+    const boardSave = () => {
         const arrTemp = [...boardList];
         const maxNum = arrTemp.reduce((prev, value) => {
             return prev.num >= value.num ? prev.num : value.num;
@@ -122,7 +140,7 @@ const BoardWriter = ({}) => {
                 dispatch(setMode("list"));
             }
         });
-    };
+    }
 
     // 입력 양식 밸리데이터 체크
     const validator = () => {
@@ -158,12 +176,12 @@ const BoardWriter = ({}) => {
                     <Form.Label>제목</Form.Label>
                     <FloatingLabel
                         controlId="floatingTitle"
-                        label="제목을 입력해주세요."
+                        label="제목"
                         className="mb-3"
                         >
                     <Form.Control 
                         type="text"
-                        placeholder="제목을 입력해주세요."
+                        placeholder="제목"
                         onChange={(e) => objChnage(e.target.value, "title", setBoardInfo)}
                         value={boardInfo?.title}
                         autoComplete="off"
@@ -175,12 +193,12 @@ const BoardWriter = ({}) => {
                     <Form.Label>작성자</Form.Label>
                     <FloatingLabel
                         controlId="floatingWriter"
-                        label="작성자를 입력해주세요."
+                        label="작성자"
                         className="mb-3"
                         >
                     <Form.Control
                         type="text"
-                        placeholder="작성자를 입력해주세요."
+                        placeholder="작성자"
                         onChange={(e) => objChnage(e.target.value, "writer", setBoardInfo)}
                         value={boardInfo.writer}
                         autoComplete="off"
@@ -209,12 +227,14 @@ const BoardWriter = ({}) => {
                     />
             </Form>
 
+            <Nav style={{float: "left"}}>
+                <Button variant="secondary" onClick={historyBack}>목록</Button>
+            </Nav>
+
             <Nav style={{float: "right"}}>
-                <Button variant="danger" onClick={historyBack}>뒤로가기</Button>
-                &nbsp;
                 <Button variant="warning" onClick={boardInit}>초기화</Button>
                 &nbsp;
-                <Button variant="primary" onClick={boardSave} >등록</Button>
+                <Button variant="primary" onClick={boardSaveCheck} >등록</Button>
             </Nav>
             
         </Container>

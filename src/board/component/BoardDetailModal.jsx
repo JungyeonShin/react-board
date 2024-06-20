@@ -36,6 +36,7 @@ const BoardDetailModal = ({
             onHide={() => setShowModal(false)}
             animation={true}
             backdrop={"static"}
+            centered
             >
             <Modal.Header closeButton>
                 <ModalTitle>{objBoardInfo?.title}</ModalTitle>
@@ -75,7 +76,7 @@ const BoardDetailModal = ({
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" size="sm" onClick={onClose}>닫기</Button>
-                <Button variant="primary" size="sm" onClick={onModifyBtn}>수정</Button>
+                <Button variant="primary" size="sm" onClick={onModifyBtn}>수정하기</Button>
             </Modal.Footer>
         </Modal>
 

@@ -29,6 +29,12 @@ const BoardConatiner = ({}) => {
     };
 
     useEffect(() => {
+        if (!showModal) {
+            dispatch(setBoardNum(0));
+        }
+    }, [showModal])
+
+    useEffect(() => {
         dispatch(setBoardList([
             {
                 num: 1,

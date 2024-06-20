@@ -186,7 +186,7 @@ const BoardModify = ({}) => {
                     />
             </Form>
             <Nav style={{float: "left"}}>
-                <Button variant="secondary" size="sm" onClick={historyBack}>리스트 이동</Button>
+                <Button variant="secondary" size="sm" onClick={historyBack}>목록</Button>
             </Nav>
 
             <Nav style={{float: "right"}}>
