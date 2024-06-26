@@ -1,25 +1,30 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TopNav from "./layout/TopNav";
-import BoardList from "./main/BoardList";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { useEffect } from "react";
-// import MainContainer from "./main/MainContainer";
 import { Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
 import Loading from "./comm/Loading";
-// import BoardConatiner from "./board/BoardContainer";
-// import Loading from "./comm/Loading";
+import { createPrjStore } from "./app/store";
 
 const MainContainer = lazy(() => import('./main/MainContainer'));
 const BoardContainer = lazy(() => import('./board/BoardContainer'));
 
 // const Loading = lazy(() => import('./comm/Loading'));
+    //   console.log("test")
+export const store = createPrjStore();
 
 function App() {
-    
+
+    // const queryClient = new QueryClient({
+    //     defaultOptions: {
+    //       queries: {
+    //         refetchOnWindowFocus: false,
+    //         refetchOnMount: false,
+    //       },
+    //     },
+    //   })
     return (
+        // <QueryClientProvider client={queryClient}>
         <Provider store={store}>
             <Routes>
                 <Route path="/" element={
@@ -37,6 +42,7 @@ function App() {
                 <Route path="/test" element={<TopNav  />}  />
             </Routes>
         </Provider>
+        // </QueryClientProvider>
     )
 }
 

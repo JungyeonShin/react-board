@@ -3,17 +3,51 @@ import { Button, Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import TopNav from "../layout/TopNav";
 import { setBoardList, setBoardNum, setMode } from "../reducer/MainSlice";
+import { boardAction } from "./boardReducer";
 import BoardDetail from "./component/BoardDetail";
 import BoardDetailModal from "./component/BoardDetailModal";
 import BoardList from "./component/BoardList";
 import BoardModify from "./component/BoardModify";
 import BoardWriter from "./component/BoardWriter";
+// import { boardAction } from "board/boardReducer";
 
 
 const BoardConatiner = ({}) => {
 
-    const { mode, arrBoard, boardNum } = useSelector(state => ({mode: state.mode, arrBoard: state.boardList, boardNum: state.boardNum}));
     const dispatch = useDispatch();
+    
+    const {
+        getMemberList,
+        mode,
+        loading,
+    } = useSelector(({boardReducer}) => ({
+        getMemberList: boardReducer?.getMemberList?.data,
+        mode: boardReducer?.mode,
+        loading: boardReducer?.getMemberList?.loading,
+    }));
+
+    useEffect(() => {
+        if (mode) console.log("모드 정보 ::", mode);
+    }, [mode])
+
+    useEffect(() => {
+        console.log("액션정보 :: " , boardAction);
+        dispatch(boardAction.getMemberList());
+
+        // return () => {
+        //     dispatch(boardAction.initializeAll());
+        // }
+    }, [])
+
+    useEffect(() => {
+        // if (getMemberList) {
+            console.log("로그 테스트 :: ", getMemberList);
+        // }
+
+    }, [getMemberList])
+
+    // const { mode, arrBoard, boardNum } = useSelector(state => ({mode: state.mode, arrBoard: state.boardList, boardNum: state.boardNum}));
+    
 
     // 모달창 visible 여부
     const [showModal, setShowModal] = useState(false);
@@ -30,36 +64,37 @@ const BoardConatiner = ({}) => {
 
     useEffect(() => {
         if (!showModal) {
-            dispatch(setBoardNum(0));
+            // dispatch(setBoardNum(0));
         }
     }, [showModal])
 
-    useEffect(() => {
-        dispatch(setBoardList([
-            {
-                num: 1,
-                title: "제목1",
-                writer: "작성자1",
-                content: "게시물1게시물1",
-                writeDt: "2024-06-13",
-            },
-            {
-                num: 2,
-                title: "제목2",
-                writer: "작성자2",
-                content: "게시물2게시물2",
-                writeDt: "2024-06-09",
-            },
-            {
-                num: 3,
-                title: "제목3",
-                writer: "작성자3",
-                content: "게시물3게시물3",
-                writeDt: "2024-06-08",
-            }
-        ]));
-    }, []);
+    // useEffect(() => {
+    //     dispatch(setBoardList([
+    //         {
+    //             num: 1,
+    //             title: "제목1",
+    //             writer: "작성자1",
+    //             content: "게시물1게시물1",
+    //             writeDt: "2024-06-13",
+    //         },
+    //         {
+    //             num: 2,
+    //             title: "제목2",
+    //             writer: "작성자2",
+    //             content: "게시물2게시물2",
+    //             writeDt: "2024-06-09",
+    //         },
+    //         {
+    //             num: 3,
+    //             title: "제목3",
+    //             writer: "작성자3",
+    //             content: "게시물3게시물3",
+    //             writeDt: "2024-06-08",
+    //         }
+    //     ]));
+    // }, []);
 
+    /*
     useEffect(() => {
         if (boardNum) {
             // dispatch(setBoardNum(selectNum));
@@ -67,7 +102,8 @@ const BoardConatiner = ({}) => {
             setShowModal(true);
         }
     }, [boardNum]);
-
+    */
+   
     return (
         <>
         <TopNav />
@@ -82,7 +118,7 @@ const BoardConatiner = ({}) => {
                 </figure>
 
                 <Nav style={{float: "left"}}>
-                    <p>[총 {arrBoard?.length}개]</p>
+                    <p>[총 {1}개]</p>
                 </Nav>
                 <Nav style={{float: "right"}}>
                     <Button onClick={writeBtnClick} size="sm">글쓰기</Button>
@@ -90,8 +126,8 @@ const BoardConatiner = ({}) => {
                     
 
                 <BoardList
-                    arrBoard={arrBoard}
-                    setSelectNum={setSelectNum}
+                    arrBoard={[]}
+                    // setSelectNum={setSelectNum}
                     />
 
             </Container>
@@ -107,11 +143,11 @@ const BoardConatiner = ({}) => {
         : "11"
         }
 
-        <BoardDetailModal
+        {/* <BoardDetailModal
             showModal={showModal}
             setShowModal={setShowModal}
             objBoardInfo={objDetailInfo}
-            />
+            /> */}
         </>
     );
 }

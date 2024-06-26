@@ -4,8 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import TopNav from "../layout/TopNav";
 import BoardList from "./BoardList";
 import { setBoardList } from "../reducer/MainSlice";
+import { useQuery } from "react-query";
+import { postFetch } from "../util/clientFetch";
 
 const MainContainer = ({}) => {
+
+    const { 
+        isLoading,
+        error,
+        data,
+        isFetching,
+        refetch
+    } = useQuery('repoData', () =>
+        postFetch("/api/test1", {"TEST": "123123"})
+    );
+    
+    useEffect(() => {
+        refetch(() => postFetch("/api/test2", {"TEST": "123123"}));
+    }, [])
+
+    useEffect(() => {
+        if (!isLoading && !error && data) console.log("TEST123123 :: ", data);
+    }, [data])
 
     return (
         <>
