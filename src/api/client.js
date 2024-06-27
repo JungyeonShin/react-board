@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PROXY = window.location.hostname === 'localhost' ? '' : '/api';
+const PROXY = window.location.hostname === 'localhost' ? '' : '';
 const URL = `${PROXY}`;
 
 const client = axios.create({
