@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/proxy/*"
-  to = "https://jy-react-todo.koyeb.app/:splat"
-  status = 200
-  force = true
+from = "/api/*"
+to = "https://jy-react-todo.koyeb.app/:splat"
+status = 200
+force = true
