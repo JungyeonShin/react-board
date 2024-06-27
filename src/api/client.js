@@ -1,8 +1,11 @@
 import axios from "axios";
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const URL = `${PROXY}`;
+
 const client = axios.create({
     //baseURL: 'http://localhost:3000',
-    baseURL: import.meta.env.VITE_BACKEND_AXIOS_URL,
+    baseURL: import.meta.env.VITE_BACKEND_AXIOS_URL + PROXY,
     timeout: 10000,
     xsrfCookieName: 'XSRF-TOKEN',
     xsrfHeaderName: 'X-XSRF-TOKEN',

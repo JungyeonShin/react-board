@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/proxy/*"
+  to = "https://jy-react-board.netlify.app/:splat"
+  status = 200
+  force = true
