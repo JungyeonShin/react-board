@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://jy-react-board.netlify.app/:splat"
+  to = "https://jy-react-todo.koyeb.app/:splat"
   status = 200
   force = true
